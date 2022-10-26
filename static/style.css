@@ -1,0 +1,36 @@
+.main-container {
+    height: 100vh;
+    background-color:#1e5885;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: #f7c1bb;
+    font-family: 'Secular One', sans-serif;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+h1{
+    font-size: 5vw;
+}
+
+#submit-btn{
+    background-color: #f7c1bb;
+    border: none;
+    padding: 0.5vw;
+    border-radius: 5px;
+    color:#1e5885;
+    font-weight: bold;
+}
+
+#url_to_squash {
+    padding: 0.5vw;
+    border-radius: 5px;
+}
+

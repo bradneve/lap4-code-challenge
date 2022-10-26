@@ -8,11 +8,14 @@
 <form action="/" method="POST">
     <label style="display: none;" for="url_to_squash">Type your url</label>
     <input id="url_to_squash" type="text" name="url_to_squash" placeholder="Squash your url here!">
-    <input type="submit" value="SqUaSh">
+    <input id="submit-btn" type="submit" value="SqUaSh">
 </form>
-
-<h2>Your squashed url: {{url}}</h2>
-
+{% if url %}
+<h2>Your squashed url: <a target="_blank" href={{url}}>{{url}}</a></h2>
+{% endif %}
+{% if empty %}
+<h2>Please enter a valid url</h2>
+{% endif %}
 
 
 

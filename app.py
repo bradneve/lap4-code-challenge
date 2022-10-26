@@ -34,18 +34,22 @@ def get_random_url():
 @app.route("/", methods=["POST", "GET"])
 def home():
     if request.method == "GET":
-        return render_template("home.html", display="none")
+        return render_template("home.html")
     elif request.method == "POST":
         url_to_squash = request.form["url_to_squash"]
-        existing_squashed_url = Urls.query.filter_by(big_url=url_to_squash).first()
-        if existing_squashed_url:
-            return render_template("home.html", url=existing_squashed_url.small_url)
+        if url_to_squash:
+            existing_squashed_url = Urls.query.filter_by(big_url=url_to_squash).first()
+            if existing_squashed_url:
+                return render_template("home.html", url=f"http://localhost:5000/{existing_squashed_url.small_url}")
+            else:
+                random_url = get_random_url()
+                new_squashed_url = Urls(url_to_squash, random_url)
+                db.session.add(new_squashed_url)
+                db.session.commit()
+                return render_template("home.html", url=f"http://localhost:5000/{random_url}") 
         else:
-            random_url = get_random_url()
-            new_squashed_url = Urls(url_to_squash, random_url)
-            db.session.add(new_squashed_url)
-            db.session.commit()
-            return render_template("home.html", url=f"http://localhost:5000/{random_url}") 
+            return render_template("home.html", empty=True)
+
 
 @app.route("/<small_url>")
 def go_to_page(small_url):
