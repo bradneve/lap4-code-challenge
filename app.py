@@ -24,7 +24,11 @@ with app.app_context():
 def get_random_url():
     letters = string.ascii_lowercase
     result_url = ''.join(random.choice(letters) for i in range(4))
-    return result_url
+    url_already_exists = Urls.query.filter_by(small_url=result_url).first()
+    while url_already_exists:
+        result_url = ''.join(random.choice(letters) for i in range(4))
+        url_already_exists = Urls.query.filter_by(small_url=result_url).first()
+    return result_url 
 
 
 @app.route("/", methods=["POST", "GET"])
