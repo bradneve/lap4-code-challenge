@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block headers %}
+<!-- <script src={{ url_for("static", filename="./scripts/create.js")}} defer></script> -->
+{% endblock %}
+{% block title %}Make a new bee{% endblock %}
+{% block content %}
+<h1>URL squashers</h1>
+<form action="">
+    <label style="display: none;" for="url">Type your url</label>
+    <input type="text" name="url" placeholder="Squash your url here!">
+    <input type="submit" value="SqUaSh">
+</form>
+
+
+{% endblock %}
